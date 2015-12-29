@@ -1,0 +1,51 @@
+swagger: '2.0'
+info:
+  description: |
+    测试地址 dx.mobile-service.baidao.com
+  version: 1.0.0
+  title: 大象贵金属-MobileService
+basePath: /
+host: dx.mobile-service.baidao.com
+schemes:
+  - http
+paths:
+  /bulletin/latest:
+    get:
+      description: |
+        获取对应usertype的用户弹屏提示
+      parameters:
+        - in: query
+          name: userType
+          type: string
+          description: '0: 游客，1:注册用户，2:注册用户，3:激活用户'
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            $ref: '#/definitions/Bulletin'
+definitions:
+  Bulletin:
+    type: object
+    properties:
+      id:
+        type: integer
+      userType:
+        type: integer
+        example: 1
+        description: '0: 游客可参与 1(001):注册用户可参与 3(011):注册用户且留有手机号码可参与 7(111):激活用户可参与'
+      datetime:
+        type: string
+        format: datetime
+      type:
+        type: integer
+        description: '0:没有 1:聊天 2:活动 3:资讯 4:lotto 5:开户 6: 专家文章 7：专家信息'
+      detailId:
+        type: integer
+        description: 活动或者咨询对应的具体的对象id
+      imgUrl:
+        type: string
+        description: 弹出图片的地址
+        format: url
+        example: 'http://img0.bdstatic.com/img/image/shouye/lyj/shishang1219.jpg'

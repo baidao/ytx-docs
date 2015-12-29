@@ -1,0 +1,68 @@
+swagger: '2.0'
+info:
+  description: >
+    测试地址
+    az.compass-service.baidao.com
+  version: 1.0.0
+  title: '大象贵金属部分接口说明'
+
+  
+basePath: /
+schemes:
+  - http
+paths:
+
+  /dx/market:
+    get:
+      description: |
+        Gets `market` array.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Market'
+  /dx/agent:
+    get:
+      description: |
+        Gets `agent` object.
+        
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Agent'
+            
+                
+definitions:
+  Market:
+    type: object
+    properties:
+      agent:
+        type: string
+        example: dx
+      rate:
+        type: integer
+        example: 10
+      name:
+        type: string
+      code:
+        type: string
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      id:
+        type: integer
+  Agent:
+    type: object
+    properties:
+      agent: 
+        type: string
+        example: dx
+      serverId: 
+        type: integer
+        example: 10              
